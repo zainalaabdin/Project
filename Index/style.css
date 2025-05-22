@@ -1,0 +1,238 @@
+ body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e0e0e0;
+    }
+    
+.btn {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+
+.btn.update {
+  background-color: #4CAF50;
+}
+
+.btn.update:hover {
+  background-color: #45a049;
+}
+
+.btn.delete {
+  background-color: #f44336;
+}
+
+.btn.delete:hover {
+  background-color: #d32f2f;
+}
+
+#addStudentBtn {
+    margin-right: 73%;
+    padding: 6px 12px;
+    margin-bottom: 4px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  #addStudentBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  #studentModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+#studentModal > div {
+  background-color: white;
+  margin: 100px auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+}
+
+#studentModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#studentModal > div {
+  background-color: #fff;
+  padding: 30px 20px;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: left;
+  position: relative;
+}
+
+#studentModal h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+#studentModal input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#studentModal button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#studentModal button:first-of-type {
+  background-color: #28a745;
+  color: #fff;
+}
+
+#studentModal button:first-of-type:hover {
+  background-color: #218838;
+}
+
+#studentModal button:last-of-type {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+#studentModal button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+#updateModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+#updateModal .modal-content {
+  background-color: #fff;
+  padding: 30px 20px;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: left;
+  position: relative;
+}
+
+
+
+
+#updateModal h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+#updateModal input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#updateModal button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#updateModal button:first-of-type {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#updateModal button:first-of-type:hover {
+  background-color: #0056b3;
+}
+
+#updateModal button:last-of-type {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+#updateModal button:last-of-type:hover {
+  background-color: #c82333;
+}
