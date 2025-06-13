@@ -1,0 +1,167 @@
+<html>
+<head>
+  <title>LOGIN</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style> 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #ede9f1, #2575fc);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.container label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #555;
+}
+
+.container input {
+  width: 100%;
+  padding: 12px 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.container input:focus {
+  border-color: #2575fc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+}
+
+.button {
+  margin-top: 25px;
+}
+
+.button button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2575fc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button button:hover {
+  background-color: #1a5ed8;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Login</h2>
+    <label>Email</label><br>
+    <input type="text" id="username" placeholder="Enter your Email"><br>
+    <label>Password</label><br>
+    <input type="password" id="password" placeholder="Enter Your Password"><br>
+    
+    <div class="button">
+      <button onclick="login()">Submit</button>
+    </div>
+  </div>
+
+  <script>
+
+ 
+
+    function login() {
+      let name = $("#username").val().trim();
+      let password = $("#password").val().trim();
+
+      if (!name || !password) {
+        alert("Please enter both Email and Password");
+        return;
+      }
+
+      let logindata = {
+        name: name,
+        password: password
+      };
+
+      $.ajax({ 
+        url: "http://localhost:3000/api/login",
+        method: "POST",
+        data: JSON.stringify(logindata),
+        contentType: "application/json",
+        success: function (result) {
+          localStorage.setItem("token",result.token);
+          localStorage.setItem("isLoggedIn", true);  
+          window.location.href = "index.html"
+        },
+        error: function (xhr, status, error) {
+          console.log("Error occurred:", error);
+          alert("Login failed");
+        }
+      });
+    }
+
+       $(function() {
+  $(window).on("pageshow", function(event) {
+    if (event.originalEvent.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+    $.ajax({
+      url: 'http://localhost:3000/api/validateToken',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+       success: function(data) {
+        window.location.href = "index.html";
+      },
+      error: function(xhr) {
+
+      }
+    });
+  }
+ });
+});
+
+$.ajax({
+      url: 'http://localhost:3000/api/validateToken',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+       success: function(data) {
+        window.location.href = "index.html";
+      },
+      error: function(xhr) {
+
+      }
+    });
+
+
+  </script>
+
+</body>
+</html>

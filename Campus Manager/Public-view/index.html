@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faculty Manager</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+.logout-wrapper {
+  position: relative; 
+  height: 0;
+}
+
+.logout {
+  position: absolute;
+  top: 25px;
+  right: 130px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.logout:hover {
+  background-color: #c0392b;
+}
+
+
+
+  </style>
+</head>
+<body>
+<h1>UNIVERSITY</h1>
+<div class="logout-wrapper">
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+<div class="container">
+  <div class="left">
+    <h2>Faculty Details</h2>
+    <label>ID</label></br>
+    <input type="text" id="id" readonly />
+    <label>Faculty</label></br>
+    <input type="text" id="faculty" />
+    <label>Remarks</label></br>
+    <input type="text" id="remarks" />
+
+  <div class="buttons">
+    <button class="add" onclick="addfac()">Add</button>
+    <button class="update" onclick="updatefaculty()">Update</button>
+    <button class="delete" onclick="deletefaculty()">Delete</button>
+    <button class="clear" id="clearfaculty">Clear</button>
+  </div>
+
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Faculty List</h2>
+    <div id="clickfacultylist"></div>
+  </div>
+  </div>
+  </div>
+
+  <!-- DEPARTMENT SECTION -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Department Details</h2>
+    <label for="faculty-select">Select Faculty</label><br />
+    <select id="faculty-select">
+      <option value="">-- Select Faculty --</option>
+    </select></br></br>
+
+    <label>ID</label><br />
+    <input type="text" id="dept-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="name" />
+    <label>Code</label><br />
+    <input type="text" id="code" />
+    <label>Email</label><br />
+    <input type="text" id="email" />
+    <label>Phone</label><br />
+    <input type="text" id="phone" />
+
+    <div class="buttons">
+      <button class="add" onclick="addDepartment()">Add</button>
+      <button class="update" onclick="updateDepartment()">Update</button>
+      <button class="delete" onclick="deleteDepartment()">Delete</button>
+      <button class="clear" id="cleardept">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Department List</h2>
+    <div id="clickDepartmentList"></div>
+  </div>
+  </div>
+  </div>
+  
+
+
+
+
+  <!-- BATCH SECTION  -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Batch Details</h2>
+  <div class="select-row">
+  <div class="select-group">
+    <label for="faculty-batch-select">Select Faculty</label><br />
+    <select id="faculty-batch-select">
+      <option value="">Select Faculty</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="department-select">Select Department</label><br />
+    <select id="department-batch-select">
+      <option value="">Select Department</option>
+    </select>
+  </div>
+</div>
+
+    <label>ID</label><br />
+    <input type="text" id="batch-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="batch-name" />
+    <label>Start Year</label><br />
+    <input type="text" id="start-year" />
+    <label>End Year</label><br />
+    <input type="text" id="end-year" />
+    <label>Remarks</label><br />
+    <input type="text" id="batch-remarks" />
+
+    <div class="buttons">
+      <button class="add" onclick="addBatch()">Add</button>
+      <button class="update" onclick="updatebatch()">Update</button>
+      <button class="delete" onclick="deletebatch()">Delete</button>
+      <button class="clear" id="clearbatch">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+  <h2>Batch List</h2>
+  <div id="clickBatchList"></div>
+  </div>
+  </div>
+  </div>
+
+
+<!-- Student Start -->
+<div class="container">
+  <div class="left">
+    <h2>Student Details</h2>
+
+    <div class="select-row">
+  <div class="select-group">
+    <label for="student-faculty-select">Select Faculty</label><br />
+    <select id="student-faculty-select">
+      <option value="">Select Faculty</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="department-student-select">Select Department</label><br />
+    <select id="department-student-select">
+      <option value="">Select Department</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="student-batch-select">Select Batch</label><br />
+    <select id="student-batch-select">
+      <option value="">Select Batch</option>
+    </select>
+  </div>
+  </div>
+
+
+    <label>ID</label><br />
+    <input type="text" id="student-id" readonly />
+
+    <label>Name</label><br />
+    <input type="text" id="student-name" />
+
+    <label>Roll Number</label><br />
+    <input type="text" id="student-roll" />
+
+    <label>Email</label><br />
+    <input type="email" id="student-email" />
+
+    <label>Phone</label><br />
+    <input type="text" id="student-phone" />
+
+    <label>Gender</label><br />
+    <select id="student-gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label>Date of Birth</label><br />
+    <input type="date" id="student-dob" />
+
+    <label>Address</label><br />
+    <textarea id="student-address" rows="2"></textarea>
+
+    <label>Admission Date</label><br />
+    <input type="date" id="admission-date" />
+
+    <label>Remarks</label><br />
+    <input type="text" id="student-remarks" />
+
+    <div class="buttons">
+      <button class="add" onclick="addstudent()">Add</button>
+      <button class="update" onclick="updatestudent()">Update</button>
+      <button class="delete" onclick="deletestudent()">Delete</button>
+      <button class="clear" id="clearstudent">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <div class="right">
+      <h2>Student List</h2>
+      <div id="clickStudentList"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Student End -->
+<script>
+
+  $.ajaxSetup({
+    complete: function(xhr) {
+      if (xhr.status === 401) {
+        alert("Session expired. Redirecting to login...");
+        window.location.href = "/login";
+    }
+  }
+});
+
+  const token = localStorage.getItem("token");
+  if(!token){
+      window.location.href = "login.html";
+  }else{
+    $.ajax({
+      url: 'http://localhost:3000/api/validateToken',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+       success: function(data) {
+        
+      },
+      error: function(xhr) {
+        if(xhr.status === 401){
+        alert('Session expied');
+        window.location.href = "login.html";
+        }
+      }
+    });
+  }
+
+  let facultyData = [];
+
+  function fetchFaculty(department) {
+    $.ajax({
+      url: 'http://localhost:3000/api/fetchFaculty',
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      success: function(data) {
+        facultyData = data;
+        newfacultylist();
+        filldropdown(data, 'faculty-select', "Faculty");
+        filldropdown(data, 'faculty-batch-select', "Faculty");
+        filldropdown(data, 'student-faculty-select', "Faculty");
+        department(fetchbatch);
+        
+        //end 
+        
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+    
+        console.log("Status Code:", jqXHR.status);              // e.g., 401
+        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
+        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
+        console.log("Text Status:", textStatus);                // e.g., "error"
+        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
+      }
+    });
+  }
+
+  //New faculty list in Div
+  function newfacultylist() {
+  $('#clickfacultylist').empty();
+
+  for (let i = 0; i < facultyData.length; i++) {
+    $('#clickfacultylist').append(`
+      <div class="faculty-item" onclick="showfaculty(${i})">
+        ${facultyData[i].name}
+      </div>
+    `);
+  }
+}
+
+  
+  //FACULTY 
+function showfaculty(index) {
+  const clickedItem = $('.faculty-item').eq(index);
+  if (clickedItem.hasClass('active')) {
+    clickedItem.removeClass('active');
+    clearfield();
+  } else {
+    
+    $('.faculty-item').removeClass('active');
+   
+    clickedItem.addClass('active');
+
+    const item = facultyData[index];
+    $('#id').val(item.id);
+    $('#faculty').val(item.name);
+    $('#remarks').val(item.remarks);
+  }
+}
+
+
+
+  //ADD NEW FACULTY
+
+
+function addfac() {
+  const id = $("#id").val().trim();
+  const name = $("#faculty").val().trim();
+  const remarks = $("#remarks").val().trim();
+
+  if (id || !name || !remarks) {
+    alert("Please Clear fileds before Inserting New data.");
+    return;
+  }
+
+  const facdata = {
+    name: name,
+    remarks: remarks
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/addfac",
+    method: "POST",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(facdata),
+    contentType: "application/json",
+    success: function (result) {
+      console.log("FACULTY ADDED SUCCESSFULLY");
+      fetchFaculty(fetchDepartments); 
+      clearfield();
+    },
+    error: function (xhr, status, error) {
+      if(xhr.status === 400)
+       
+      console.log("Error occurred:", error);
+      alert("Failed to add faculty. Try again.");
+    }
+  });
+}
+
+
+//Update Faculty
+
+function updatefaculty() {
+  const id = $("#id").val().trim();
+  const name = $("#faculty").val().trim();
+  const remarks = $("#remarks").val().trim();
+
+  if (!id || !name || !remarks) {
+    alert("Please select a faculty and fill out all fields.");
+    return;
+  }
+
+  const updatedData = {
+    id: id,
+    name: name,
+    remarks: remarks
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/updatefaculty",  
+    method: "PUT",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(updatedData),
+    contentType: "application/json",
+    success: function (result) {
+      alert("Faculty updated successfully.");
+      fetchFaculty(fetchDepartments);
+      clearfield();
+    },
+    error: function (xhr, status, error) {
+      console.log("Update error:", error);
+      alert("Failed to update faculty.");
+    }
+  });
+}
+
+ //Clear
+  document.getElementById("clearfaculty").addEventListener("click", clearfield);
+  function clearfield(){
+  $("#id").val("");
+  $("#faculty").val("");
+  $("#remarks").val("");
+  }
+
+  
+
+  //delete row funtion start
+
+  function deletefaculty() {
+  const id = $("#id").val();
+  if (confirm("Are you sure you want to delete this faculty?")) {
+    $.ajax({
+      url: `http://localhost:3000/api/deletefaculty/${id}`,
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      success: function (result) {
+        alert("Faculty deleted successfully.");
+        fetchFaculty(fetchDepartments);
+        clearfield();
+      },
+      error: function (xhr, status, error) {
+        console.error("Delete error:", error);
+        alert("Failed to delete faculty.");
+      }
+    });
+  }
+}
+
+  //delete row end 
+
+
+
+
+
+  //Department Fetch data Start
+
+let departmentData = [];
+
+function fetchDepartments(batch) {
+  $.ajax({
+    url: 'http://localhost:3000/api/departments',
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    success: function(data) {
+      departmentData = data;
+      newDepartmentList();
+      filldropdown(data, "department-batch-select", "Department");
+      filldropdown(data, 'department-student-select', "Department");
+      batch(fetchstudent);
+    },
+    error: function() {
+      alert('Error fetching department data');
+    }
+  });
+}
+
+// Department list in Div
+function newDepartmentList() {
+  $('#clickDepartmentList').empty();
+
+  for (let i = 0; i < departmentData.length; i++) {
+    $('#clickDepartmentList').append(`
+      <div class="department-item" onclick="showDepartment(${i})">
+        ${departmentData[i].name}
+      </div>
+    `);
+  }
+}
+
+// Show department in input fields
+function showDepartment(index) {
+  const clickedItem = $('.department-item').eq(index);
+
+  if (clickedItem.hasClass('active')) {
+    clickedItem.removeClass('active');
+    clearDeptFields();
+  } else {
+    
+    $('.department-item').removeClass('active');
+
+    clickedItem.addClass('active');
+    const item = departmentData[index];
+    $('#faculty-select').val(item.faculty_id).change();
+    $('#dept-id').val(item.id);
+    $('#name').val(item.name);
+    $('#code').val(item.code);
+    $('#email').val(item.email);
+    $('#phone').val(item.phone);
+  }
+}
+
+document.getElementById("cleardept").addEventListener("click", clearDeptFields);
+
+// Clear fields
+function clearDeptFields() {
+  $('#dept-id').val('');
+  $('#name').val('');
+  $('#code').val('');
+  $('#email').val('');
+  $('#phone').val('');
+}
+
+// Only fetch on load
+$(document).ready(function() {
+  fetchFaculty(fetchDepartments);
+});
+  //Department Fetch Data End
+
+
+
+
+//add department code start
+
+  function addDepartment() {
+  const facultyId = $("#faculty-select").val();
+  const id = $("#dept-id").val();
+  const name = $("#name").val().trim();
+  const code = $("#code").val().trim();
+  const email = $("#email").val().trim();
+  const phone = $("#phone").val().trim();
+
+  if (id) {
+    alert("Please clear fields before inserting new data.");
+    return;
+  }else if(!facultyId || !name || !code || !email || !phone){
+    alert("Please fill All the fields");
+    return;
+  }
+
+  const deptData = {
+    facultyId: facultyId,
+    name: name,
+    code: code,
+    email: email,
+    phone: phone
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/addDepartment",
+    method: "POST",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(deptData),
+    contentType: "application/json",
+    success: function () {
+      console.log("DEPARTMENT ADDED SUCCESSFULLY");
+      fetchDepartments(fetchbatch); 
+      clearDeptFields();
+    },
+    error: function (xhr, status, error) {
+      console.log("Error occurred:", error);
+      alert("Failed to add department. Try again.");
+    }
+  });
+}
+
+//add department code end
+
+
+
+//update department code start
+
+  function updateDepartment() {
+  const id = $("#dept-id").val().trim();
+  const name = $("#name").val().trim();
+  const code = $("#code").val().trim();
+  const email = $("#email").val().trim();
+  const phone = $("#phone").val().trim();
+
+  const updatedData = {
+    id: id, 
+    name: name,
+    code: code,
+    email: email,
+    phone: phone
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/updateDepartment",
+    method: "PUT",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(updatedData),
+    contentType: "application/json",
+    success: function () {
+      console.log("DEPARTMENT UPDATED SUCCESSFULLY");
+      fetchDepartments(fetchbatch); 
+      clearDeptFields();
+    },
+    error: function (xhr, status, error) {
+      console.log("Update Error:", error);
+      alert("Failed to update department. Try again.");
+    }
+  });
+}
+
+
+//update department code end 
+
+
+
+//delete department start
+
+  function deleteDepartment() {
+  const id = $("#dept-id").val().trim();
+  if (!id) {
+    alert("Please select a department to delete.");
+    return;
+  }
+  if (!confirm("Are you sure you want to delete this department?")) {
+    return; // user cancelled
+  }
+  $.ajax({
+    url: "http://localhost:3000/api/deleteDepartment" + id,
+    method: "DELETE",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    success: function () {
+      alert("Department deleted successfully.");
+      fetchDepartments(fetchbatch); 
+      clearDeptFields();
+    },
+    error: function (xhr, status, error) {
+      console.log("Delete Error:", error);
+      alert("Failed to delete department.");
+    }
+  });
+}
+
+//delete department end 
+
+
+
+//fetchbatch start
+let batchData = [];
+
+function fetchbatch(student) {
+  $.ajax({
+    url: 'http://localhost:3000/api/fetchbatch',
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    success: function(data) {
+      batchData = data;
+      Batchlist();
+      filldropdown(data, "student-batch-select", "Batch");
+      student();
+    },
+    error: function() {
+      alert('Error fetching batch data');
+    }
+  });
+}
+
+// Batch list in Div
+function Batchlist() {
+  $('#clickBatchList').empty();
+
+  for (let i = 0; i < batchData.length; i++) {
+    $('#clickBatchList').append(`
+      <div class="batch-item" onclick="showBatch(${i})">
+        ${batchData[i].name}
+      </div>
+    `);
+  }
+}
+
+// Show selected batch data in input fields
+function showBatch(index) {
+  const clickedItem = $('.batch-item').eq(index);
+
+  if (clickedItem.hasClass('active')) {
+    clickedItem.removeClass('active');
+    clearbatch();
+  } else {
+    $('.batch-item').removeClass('active');
+    clickedItem.addClass('active');
+    const item = batchData[index];
+    $('#batch-id').val(item.id);
+    $('#faculty-batch-select').val(item.faculty_id).change();
+    $('#department-batch-select').val(item.dept_id).change();
+    $('#batch-name').val(item.name);
+    $('#start-year').val(item.start_year);
+    $('#end-year').val(item.end_year);
+    $('#batch-remarks').val(item.remarks);
+  }
+}
+
+
+// Clear batch input fields
+document.getElementById("clearbatch").addEventListener("click", clearbatch);
+function clearbatch() {
+  $('#batch-id').val('');
+  $('#faculty-batch-select').val('');
+  $('#department-batch-select').val('');
+  $('#batch-name').val('');
+  $('#start-year').val('');
+  $('#end-year').val('');
+  $('#batch-remarks').val('');
+}
+
+//fetch batch end
+
+
+
+
+
+
+//Add batch code start
+function addBatch() {
+  const facultyId = $("#faculty-batch-select").val();
+  const departmentId = $("#department-batch-select").val();
+  const id = $("#batch-id").val();
+  const name = $("#batch-name").val().trim();
+  const startYear = $("#start-year").val().trim();
+  const endYear = $("#end-year").val().trim();
+  const remarks = $("#batch-remarks").val().trim();
+
+  if (id) {
+    alert("Please clear fields before inserting new data.");
+    return;
+  }
+
+  if (!facultyId || !departmentId || !name || !startYear || !endYear) {
+    alert("Please fill all the fields");
+    return;
+  }
+  
+  const batchData = {
+    facultyId: facultyId,
+    departmentId: departmentId,
+    name: name,
+    startYear: startYear,
+    endYear: endYear,
+    remarks: remarks
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/addBatch",
+    method: "POST",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(batchData),
+    contentType: "application/json",
+    success: function (response) {
+      console.log("BATCH ADDED SUCCESSFULLY:", response);
+      alert("Batch added successfully!");
+      fetchbatch(fetchstudent);  
+      clearbatch();  
+    },
+    error: function (xhr, status, error) {
+      console.error("Error occurred:", error);
+      alert("Failed to add batch. Please try again.");
+    }
+  });
+}
+
+
+//delete batch code start
+
+
+function deletebatch() {
+  const id = $("#id").val();  
+  if (confirm("Are you sure you want to delete this batch?")) {
+    $.ajax({
+      url: `http://localhost:3000/api/deletebatch/${id}`,
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      success: function (result) {
+        alert("Batch deleted successfully.");
+        fetchbatch(fetchstudent);  
+        clearfield(); 
+      },
+      error: function (xhr, status, error) {
+        console.error("Delete error:", error);
+        alert("Failed to delete batch.");
+      }
+    });
+  }
+}
+
+//delete batch code end
+
+
+//updated batch start
+
+function updatebatch() {
+  const id = $("#batch-id").val().trim();
+  const name = $("#batch-name").val().trim();
+  const dept_id = $("#department-batch-select").val();
+  const start_year = $("#start-year").val().trim();
+  const end_year = $("#end-year").val().trim();
+  const remarks = $("#batch-remarks").val().trim();
+
+  const updatedData = {
+    id: id,
+    name: name,
+    dept_id: dept_id,
+    start_year: start_year,
+    end_year: end_year,
+    remarks: remarks
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/updateBatch",
+    method: "PUT",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(updatedData),
+    contentType: "application/json",
+    success: function () {
+      console.log("Batch updated successfully");
+      fetchbatch(fetchstudent);  
+      clearbatch(); 
+    },
+    error: function (xhr, status, error) {
+      console.error("Update batch error:", error);
+      alert("Failed to update batch. Please try again.");
+    }
+  });
+}
+
+//updated batch end
+
+//student start
+function addstudent() {
+  let id = $("#student-id").val();
+  let name = $("#student-name").val().trim();
+  let roll_num = $("#student-roll").val().trim();
+  let email = $("#student-email").val().trim();
+  let phone = $("#student-phone").val().trim();
+  let gender = $("#student-gender").val().trim();
+  let dob = $("#student-dob").val().trim();
+  let address = $("#student-address").val().trim();
+  let admission_date = $("#admission-date").val().trim();
+  let remarks = $("#student-remarks").val().trim();
+
+  let batch_id = $("#student-batch-select").val();
+
+  if (id || !name || !roll_num || !email || !phone || !gender || !dob || !address || !admission_date || !batch_id) {
+    alert("Please fill in all fields and clear fields before adding data.");
+    return;
+  }
+
+  let stduentdata = {
+    name: name,
+    roll_num: roll_num,
+    email: email,
+    phone: phone,
+    gender: gender,
+    dob: dob,
+    address: address,
+    admission_date: admission_date,
+    remarks: remarks,
+    batch_id: batch_id
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/addstudent",
+    method: "POST",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(stduentdata),
+    contentType: "application/json",
+    success: function (response) {
+      console.log("Student Added Successfully");
+      alert("Student Added Successfully");
+      fetchstudent();
+      clearstudentform();
+    },
+    error: function (xhr, status, error){
+      console.log("Error: ", error);
+      alert("Failed to add Student");
+    }
+  });
+}
+
+
+
+//students end 
+document.getElementById("clearstudent").addEventListener("click", clearstudentform);
+function clearstudentform() {
+  $('#student-id').val('');
+  $('#student-faculty-select').val('');
+  $('#department-student-select').val('');
+  $('#student-batch-select').val('');
+  $('#student-name').val('');
+  $('#student-roll').val('');
+  $('#student-email').val('');
+  $('#student-phone').val('');
+  $('#student-gender').val('');
+  $('#student-dob').val('');
+  $('#student-address').val('');
+  $('#admission-date').val('');
+  $('#student-remarks').val('');
+  
+}
+
+let studentData = [];
+function fetchstudent() {
+  $.ajax({
+    url: "http://localhost:3000/api/fetchstudent", 
+    method: "GET",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    success: function (data) {
+      studentData = data;
+      StudentList();
+      
+
+    },
+    error: function () {
+      alert("Error fetching student data");
+    }
+  });
+}
+
+
+function StudentList() {
+  $('#clickStudentList').empty();
+
+  for (let i = 0; i < studentData.length; i++) {
+    $('#clickStudentList').append(`
+      <div class="student-item" onclick="showStudent(${i})">
+        ${studentData[i].name}
+      </div>
+    `);
+  }
+}
+
+
+
+function showStudent(index) {
+  const clickedItem = $('.student-item').eq(index);
+
+  if (clickedItem.hasClass('active')) {
+    clickedItem.removeClass('active');
+    clearstudentform(); 
+  } else {
+    $('.student-item').removeClass('active');
+    clickedItem.addClass('active');
+
+    const item = studentData[index];
+
+    $('#student-id').val(item.id); 
+    $('#student-name').val(item.name);
+    $('#student-roll').val(item.roll_num);
+    $('#student-email').val(item.email);
+    $('#student-phone').val(item.phone);
+    $('#student-gender').val(item.gender);
+    $('#student-dob').val(item.dob);
+    $('#student-address').val(item.address);
+    $('#admission-date').val(item.admission_date);
+    $('#student-remarks').val(item.remarks);
+    $('#student-faculty-select').val(item.faculty_id).change();
+    $('#department-student-select').val(item.dept_id).change();
+    $('#student-batch-select').val(item.batch_id).change();
+  }
+}
+
+
+//delete student
+function deletestudent() {
+  const id = $("#student-id").val(); 
+
+  if (confirm("Are you sure you want to delete this student?")) {
+    $.ajax({
+      url: `http://localhost:3000/api/deletestudent/${id}`,
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      success: function (result) {
+        alert("Student deleted successfully.");
+        fetchstudent();
+        clearstudentform();
+      },
+      error: function (xhr, status, error) {
+        console.error("Delete error:", error);
+        alert("Failed to delete student.");
+      }
+    });
+  }
+}
+
+
+//update student
+function updatestudent() {
+  let id = $("#student-id").val().trim();
+  let name = $("#student-name").val().trim();
+  let roll_num = $("#student-roll").val().trim();
+  let email = $("#student-email").val().trim();
+  let phone = $("#student-phone").val().trim();
+  let gender = $("#student-gender").val();
+  let dob = $("#student-dob").val().trim();
+  let address = $("#student-address").val().trim();
+  let admission_date = $("#admission-date").val().trim();
+  let remarks = $("#student-remarks").val().trim();
+  let batch_id = $("#student-batch-select").val();
+
+  const updatedData = {
+    id: id,
+    name: name,
+    roll_num: roll_num,
+    email: email,
+    phone: phone,
+    gender: gender,
+    dob: dob,
+    address: address,
+    admission_date: admission_date,
+    remarks: remarks,
+    batch_id: batch_id
+  };
+
+  $.ajax({
+    url: "http://localhost:3000/api/updatestudent",
+    method: "PUT",
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    data: JSON.stringify(updatedData),
+    contentType: "application/json",
+    success: function () {
+      console.log("Student updated successfully");
+      fetchstudent();  
+      clearstudentform(); 
+    },
+    error: function (xhr, status, error) {
+      console.error("Update student error:", error);
+      alert("Failed to update student. Please try again.");
+    }
+  });
+}
+
+
+
+function filldropdown(data, id, title){
+
+        $(`#${id}`).empty().append(`<option value="">Select ${title}</option>`);
+
+        for (let i = 0; i < data.length; i++) {
+        $(`#${id}`).append(`<option value="${data[i].id}">${data[i].name}</option>`);
+        }
+}
+
+
+function logout(){
+localStorage.removeItem("isLoggedIn");
+localStorage.removeItem("token");
+window.location.href = "login.html";
+}
+
+</script>
+
+</body>
+</html>
+
