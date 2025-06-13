@@ -49,9 +49,9 @@
     <input type="text" id="remarks" />
 
   <div class="buttons">
-    <button class="add" onclick="addfac()">Add</button>
-    <button class="update" onclick="updatefaculty()">Update</button>
-    <button class="delete" onclick="deletefaculty()">Delete</button>
+    <button class="add" id="addfac">Add</button>
+    <button class="update" id="updatefaculty">Update</button>
+    <button class="delete" id="deletefaculty">Delete</button>
     <button class="clear" id="clearfaculty">Clear</button>
   </div>
 
@@ -87,9 +87,9 @@
     <input type="text" id="phone" />
 
     <div class="buttons">
-      <button class="add" onclick="addDepartment()">Add</button>
-      <button class="update" onclick="updateDepartment()">Update</button>
-      <button class="delete" onclick="deleteDepartment()">Delete</button>
+      <button class="add" id="addDepartment">Add</button>
+      <button class="update" id="updateDepartment">Update</button>
+      <button class="delete" id="deleteDepartment">Delete</button>
       <button class="clear" id="cleardept">Clear</button>
     </div>
   </div>
@@ -102,8 +102,6 @@
   </div>
   </div>
   
-
-
 
 
   <!-- BATCH SECTION  -->
@@ -139,9 +137,9 @@
     <input type="text" id="batch-remarks" />
 
     <div class="buttons">
-      <button class="add" onclick="addBatch()">Add</button>
-      <button class="update" onclick="updatebatch()">Update</button>
-      <button class="delete" onclick="deletebatch()">Delete</button>
+      <button class="add" id="addBatch">Add</button>
+      <button class="update" id="updatebatch">Update</button>
+      <button class="delete" id="deletebatch">Delete</button>
       <button class="clear" id="clearbatch">Clear</button>
     </div>
   </div>
@@ -219,9 +217,9 @@
     <input type="text" id="student-remarks" />
 
     <div class="buttons">
-      <button class="add" onclick="addstudent()">Add</button>
-      <button class="update" onclick="updatestudent()">Update</button>
-      <button class="delete" onclick="deletestudent()">Delete</button>
+      <button class="add" id="addstudent">Add</button>
+      <button class="update" id="updatestudent">Update</button>
+      <button class="delete" id="deletestudent">Delete</button>
       <button class="clear" id="clearstudent">Clear</button>
     </div>
   </div>
@@ -337,7 +335,7 @@ function showfaculty(index) {
 
   //ADD NEW FACULTY
 
-
+document.getElementById("addfac").addEventListener("click", addfac);
 function addfac() {
   const id = $("#id").val().trim();
   const name = $("#faculty").val().trim();
@@ -377,7 +375,7 @@ function addfac() {
 
 
 //Update Faculty
-
+document.getElementById("updatefaculty").addEventListener("click", updatefaculty)
 function updatefaculty() {
   const id = $("#id").val().trim();
   const name = $("#faculty").val().trim();
@@ -472,9 +470,14 @@ function fetchDepartments(batch) {
       filldropdown(data, 'department-student-select', "Department");
       batch(fetchstudent);
     },
-    error: function() {
-      alert('Error fetching department data');
-    }
+    error: function(jqXHR, textStatus, errorThrown) {
+    
+        console.log("Status Code:", jqXHR.status);              // e.g., 401
+        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
+        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
+        console.log("Text Status:", textStatus);                // e.g., "error"
+        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
+      }
   });
 }
 
@@ -534,7 +537,7 @@ $(document).ready(function() {
 
 
 //add department code start
-
+  document.getElementById("addDepartment").addEventListener("click", addDepartment);
   function addDepartment() {
   const facultyId = $("#faculty-select").val();
   const id = $("#dept-id").val();
@@ -584,7 +587,7 @@ $(document).ready(function() {
 
 
 //update department code start
-
+  document.getElementById("updateDepartment").addEventListener("click", updateDepartment);
   function updateDepartment() {
   const id = $("#dept-id").val().trim();
   const name = $("#name").val().trim();
@@ -626,7 +629,7 @@ $(document).ready(function() {
 
 
 //delete department start
-
+  document.getElementById("deleteDepartment").addEventListener("click", deleteDepartment);
   function deleteDepartment() {
   const id = $("#dept-id").val().trim();
   if (!id) {
@@ -674,9 +677,14 @@ function fetchbatch(student) {
       filldropdown(data, "student-batch-select", "Batch");
       student();
     },
-    error: function() {
-      alert('Error fetching batch data');
-    }
+    error: function(jqXHR, textStatus, errorThrown) {
+    
+        console.log("Status Code:", jqXHR.status);              // e.g., 401
+        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
+        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
+        console.log("Text Status:", textStatus);                // e.g., "error"
+        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
+      }
   });
 }
 
@@ -735,6 +743,7 @@ function clearbatch() {
 
 
 //Add batch code start
+document.getElementById("addBatch").addEventListener("click", addBatch);
 function addBatch() {
   const facultyId = $("#faculty-batch-select").val();
   const departmentId = $("#department-batch-select").val();
@@ -787,7 +796,7 @@ function addBatch() {
 
 //delete batch code start
 
-
+document.getElementById("deletebatch").addEventListener("click", deletebatch);
 function deletebatch() {
   const id = $("#id").val();  
   if (confirm("Are you sure you want to delete this batch?")) {
@@ -814,7 +823,7 @@ function deletebatch() {
 
 
 //updated batch start
-
+document.getElementById("updatebatch").addEventListener("click", updatebatch);
 function updatebatch() {
   const id = $("#batch-id").val().trim();
   const name = $("#batch-name").val().trim();
@@ -855,6 +864,7 @@ function updatebatch() {
 //updated batch end
 
 //student start
+document.getElementById("addstudent").addEventListener("click", addstudent);
 function addstudent() {
   let id = $("#student-id").val();
   let name = $("#student-name").val().trim();
@@ -943,9 +953,14 @@ function fetchstudent() {
       
 
     },
-    error: function () {
-      alert("Error fetching student data");
-    }
+    error: function(jqXHR, textStatus, errorThrown) {
+    
+        console.log("Status Code:", jqXHR.status);              // e.g., 401
+        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
+        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
+        console.log("Text Status:", textStatus);                // e.g., "error"
+        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
+      }
   });
 }
 
@@ -994,6 +1009,7 @@ function showStudent(index) {
 
 
 //delete student
+document.getElementById("deletestudent").addEventListener("click", deletestudent);
 function deletestudent() {
   const id = $("#student-id").val(); 
 
@@ -1019,6 +1035,7 @@ function deletestudent() {
 
 
 //update student
+document.getElementById("updatestudent").addEventListener("click", updatestudent);
 function updatestudent() {
   let id = $("#student-id").val().trim();
   let name = $("#student-name").val().trim();
