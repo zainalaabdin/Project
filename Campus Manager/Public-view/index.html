@@ -335,7 +335,11 @@ function showfaculty(index) {
 
   //ADD NEW FACULTY
 
-document.getElementById("addfac").addEventListener("click", addfac);
+//document.getElementById("addfac").addEventListener("click", addfac);
+$(document).ready(function(){
+  $("#addfac").on("click", addfac);
+});
+
 function addfac() {
   const id = $("#id").val().trim();
   const name = $("#faculty").val().trim();
@@ -347,7 +351,7 @@ function addfac() {
   }
 
   const facdata = {
-    name: name,
+    faculty: name,
     remarks: remarks
   };
 
@@ -375,7 +379,11 @@ function addfac() {
 
 
 //Update Faculty
-document.getElementById("updatefaculty").addEventListener("click", updatefaculty)
+//document.getElementById("updatefaculty").addEventListener("click", updatefaculty);
+
+$(document).ready(function(){
+  $("#updatefaculty").on("click", updatefaculty);
+});
 function updatefaculty() {
   const id = $("#id").val().trim();
   const name = $("#faculty").val().trim();
@@ -413,7 +421,11 @@ function updatefaculty() {
 }
 
  //Clear
-  document.getElementById("clearfaculty").addEventListener("click", clearfield);
+  
+  //document.getElementById("clearfaculty").addEventListener("click", clearfield);
+  $(document).ready(function(){
+    $("#clearfaculty").on("click", clearfield);
+  });
   function clearfield(){
   $("#id").val("");
   $("#faculty").val("");
@@ -516,8 +528,10 @@ function showDepartment(index) {
   }
 }
 
-document.getElementById("cleardept").addEventListener("click", clearDeptFields);
-
+//document.getElementById("cleardept").addEventListener("click", clearDeptFields);
+$(document).ready(function(){
+  $("#cleardept").on("click", clearDeptFields);
+});
 // Clear fields
 function clearDeptFields() {
   $('#dept-id').val('');
@@ -537,7 +551,10 @@ $(document).ready(function() {
 
 
 //add department code start
-  document.getElementById("addDepartment").addEventListener("click", addDepartment);
+//document.getElementById("addDepartment").addEventListener("click", addDepartment);
+  $(document).ready(function(){
+    $("#addDepartment").on("click", addDepartment);
+  });
   function addDepartment() {
   const facultyId = $("#faculty-select").val();
   const id = $("#dept-id").val();
@@ -587,7 +604,11 @@ $(document).ready(function() {
 
 
 //update department code start
-  document.getElementById("updateDepartment").addEventListener("click", updateDepartment);
+//document.getElementById("updateDepartment").addEventListener("click", updateDepartment);
+
+$(document).ready(function(){
+    $("#updateDepartment").on("click", updateDepartment);
+  });
   function updateDepartment() {
   const id = $("#dept-id").val().trim();
   const name = $("#name").val().trim();
@@ -629,7 +650,10 @@ $(document).ready(function() {
 
 
 //delete department start
-  document.getElementById("deleteDepartment").addEventListener("click", deleteDepartment);
+//document.getElementById("deleteDepartment").addEventListener("click", deleteDepartment);
+$(document).ready(function(){
+    $("#deleteDepartment").on("click", deleteDepartment);
+  });
   function deleteDepartment() {
   const id = $("#dept-id").val().trim();
   if (!id) {
@@ -724,7 +748,10 @@ function showBatch(index) {
 
 
 // Clear batch input fields
-document.getElementById("clearbatch").addEventListener("click", clearbatch);
+//document.getElementById("clearbatch").addEventListener("click", clearbatch);
+$(document).ready(function(){
+  $("#clearbatch").on("click", clearbatch);
+});
 function clearbatch() {
   $('#batch-id').val('');
   $('#faculty-batch-select').val('');
@@ -743,7 +770,10 @@ function clearbatch() {
 
 
 //Add batch code start
-document.getElementById("addBatch").addEventListener("click", addBatch);
+//document.getElementById("addBatch").addEventListener("click", addBatch);
+$(document).ready(function(){
+  $("#addBatch").on("click", addBatch);
+});
 function addBatch() {
   const facultyId = $("#faculty-batch-select").val();
   const departmentId = $("#department-batch-select").val();
@@ -796,7 +826,10 @@ function addBatch() {
 
 //delete batch code start
 
-document.getElementById("deletebatch").addEventListener("click", deletebatch);
+//document.getElementById("deletebatch").addEventListener("click", deletebatch);
+$(document).ready(function(){
+  $("#deletebatch").on("click", deletebatch);
+});
 function deletebatch() {
   const id = $("#id").val();  
   if (confirm("Are you sure you want to delete this batch?")) {
@@ -823,7 +856,10 @@ function deletebatch() {
 
 
 //updated batch start
-document.getElementById("updatebatch").addEventListener("click", updatebatch);
+//document.getElementById("updatebatch").addEventListener("click", updatebatch);
+$(document).ready(function(){
+  $("#updatebatch").on("click", updatebatch);
+});
 function updatebatch() {
   const id = $("#batch-id").val().trim();
   const name = $("#batch-name").val().trim();
@@ -864,7 +900,10 @@ function updatebatch() {
 //updated batch end
 
 //student start
-document.getElementById("addstudent").addEventListener("click", addstudent);
+//document.getElementById("addstudent").addEventListener("click", addstudent);
+$(document).ready(function(){
+  $("#addstudent").on("click", addstudent);
+});
 function addstudent() {
   let id = $("#student-id").val();
   let name = $("#student-name").val().trim();
@@ -921,7 +960,10 @@ function addstudent() {
 
 
 //students end 
-document.getElementById("clearstudent").addEventListener("click", clearstudentform);
+//document.getElementById("clearstudent").addEventListener("click", clearstudentform);
+$(document).ready(function(){
+  $("#clearstudent").on("click", clearstudentform);
+});
 function clearstudentform() {
   $('#student-id').val('');
   $('#student-faculty-select').val('');
@@ -1009,7 +1051,10 @@ function showStudent(index) {
 
 
 //delete student
-document.getElementById("deletestudent").addEventListener("click", deletestudent);
+//document.getElementById("deletestudent").addEventListener("click", deletestudent);
+$(document).ready(function(){
+  $("#deletestudent").on("click", deletestudent);
+});
 function deletestudent() {
   const id = $("#student-id").val(); 
 
@@ -1035,7 +1080,10 @@ function deletestudent() {
 
 
 //update student
-document.getElementById("updatestudent").addEventListener("click", updatestudent);
+//document.getElementById("updatestudent").addEventListener("click", updatestudent);
+$(document).ready(function(){
+  $("#updatestudent").on("click", updatestudent);
+});
 function updatestudent() {
   let id = $("#student-id").val().trim();
   let name = $("#student-name").val().trim();

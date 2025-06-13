@@ -15,18 +15,20 @@ exports.fetchFaculty = async (req, res) => {
 exports.addfac = async (req, res) => {
   try {
     const { faculty, remarks } = req.body;
-    if(faculty.trim() == "")
+    if (!faculty || faculty.trim() === "") {
       return res.status(400).json({ message: "Faculty can't be empty" });
+    }
     await pool.query(
-      'INSERT INTO faculty (faculty, remarks) VALUES ($1, $2)',
-      [faculty, remarks]
+    'INSERT INTO faculty (name, remarks) VALUES ($1, $2)',
+    [faculty.trim(), remarks?.trim() || null]
     );
     res.status(201).json({ message: "Faculty Added Successfully" });
   } catch (error) {
-    console.log("Database error", error);
+    console.error("Database error:", error);
     res.status(500).json({ error: "Failed to add faculty" });
   }
 };
+
 
 
 
