@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/apicontroller');
-//const { decode } = require('jsonwebtoken');
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 const jwt = require('jsonwebtoken');
 
@@ -41,7 +50,7 @@ router.get('/fetchbatch', authenticateJWT, controller.fetchbatch);
 router.delete("/deletebatch/:id", authenticateJWT, controller.deletebatch);
 router.put('/updateBatch', authenticateJWT, controller.updateBatch);
 
-router.post('/addstudent', authenticateJWT, controller.addstudent);
+router.post('/addstudent', upload.single("image"), authenticateJWT, controller.addstudent);
 router.get('/fetchstudent', authenticateJWT, controller.fetchstudent);
 router.delete("/deletestudent/:id", authenticateJWT, controller.deletestudent);
 router.put('/updatestudent', authenticateJWT, controller.updatestudent);

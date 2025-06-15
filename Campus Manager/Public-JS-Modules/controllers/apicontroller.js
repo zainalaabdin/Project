@@ -196,15 +196,17 @@ exports.fetchstudent = async (req, res) => {
 exports.addstudent = async (req, res) => {
   try {
     const { name, roll_num, email, phone, gender, dob, address, admission_date, remarks, batch_id } = req.body;
+    const image = req.file ? req.file.filename : null;
 
     console.log("Received student data:", req.body);
+    console.log("Image uploaded", image);
 
     const query = `
-      INSERT INTO student ( name, roll_num, email, phone, gender, dob, address, admission_date, remarks, batch_id
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+      INSERT INTO student ( name, roll_num, email, phone, gender, dob, address, admission_date, remarks, batch_id, image
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
 
     await pool.query(query, [
-      name, roll_num, email, phone, gender, dob, address, admission_date, remarks, batch_id ]);
+      name, roll_num, email, phone, gender, dob, address, admission_date, remarks, batch_id, image ]);
 
     res.status(201).json({ message: "Student Added Successfully" });
 

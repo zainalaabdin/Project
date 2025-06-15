@@ -181,6 +181,8 @@
   </div>
   </div>
 
+    <input type="file" id="student-image" accept="image/*" />
+    <img id="student-preview" src="" alt="Student Image" width="120" style="margin-top:10px; display:none;" />
 
     <label>ID</label><br />
     <input type="text" id="student-id" readonly />
@@ -904,8 +906,9 @@ function updatebatch() {
 $(document).ready(function(){
   $("#addstudent").on("click", addstudent);
 });
+
+
 function addstudent() {
-  let id = $("#student-id").val();
   let name = $("#student-name").val().trim();
   let roll_num = $("#student-roll").val().trim();
   let email = $("#student-email").val().trim();
@@ -915,47 +918,100 @@ function addstudent() {
   let address = $("#student-address").val().trim();
   let admission_date = $("#admission-date").val().trim();
   let remarks = $("#student-remarks").val().trim();
-
   let batch_id = $("#student-batch-select").val();
+  let image = $("#student-image")[0].files[0];
 
-  if (id || !name || !roll_num || !email || !phone || !gender || !dob || !address || !admission_date || !batch_id) {
-    alert("Please fill in all fields and clear fields before adding data.");
+  if (!name || !roll_num || !email || !phone || !gender || !dob || !address || !admission_date || !batch_id || !image) {
+    alert("Please fill in all fields.");
     return;
   }
 
-  let stduentdata = {
-    name: name,
-    roll_num: roll_num,
-    email: email,
-    phone: phone,
-    gender: gender,
-    dob: dob,
-    address: address,
-    admission_date: admission_date,
-    remarks: remarks,
-    batch_id: batch_id
-  };
+  let formData = new FormData();
+  formData.append("name", name);
+  formData.append("roll_num", roll_num);
+  formData.append("email", email);
+  formData.append("phone", phone);
+  formData.append("gender", gender);
+  formData.append("dob", dob);
+  formData.append("address", address);
+  formData.append("admission_date", admission_date);
+  formData.append("remarks", remarks);
+  formData.append("batch_id", batch_id);
+  formData.append("image", image);
 
   $.ajax({
     url: "http://localhost:3000/api/addstudent",
     method: "POST",
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    data: JSON.stringify(stduentdata),
-    contentType: "application/json",
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    data: formData,
+    processData: false,
+    contentType: false,
     success: function (response) {
-      console.log("Student Added Successfully");
       alert("Student Added Successfully");
       fetchstudent();
       clearstudentform();
     },
-    error: function (xhr, status, error){
-      console.log("Error: ", error);
+    error: function (xhr, status, error) {
       alert("Failed to add Student");
+      console.error(error);
     }
   });
 }
+
+// function addstudent() {
+//   let id = $("#student-id").val();
+//   let name = $("#student-name").val().trim();
+//   let roll_num = $("#student-roll").val().trim();
+//   let email = $("#student-email").val().trim();
+//   let phone = $("#student-phone").val().trim();
+//   let gender = $("#student-gender").val().trim();
+//   let dob = $("#student-dob").val().trim();
+//   let address = $("#student-address").val().trim();
+//   let admission_date = $("#admission-date").val().trim();
+//   let remarks = $("#student-remarks").val().trim();
+
+//   let batch_id = $("#student-batch-select").val();
+
+//   if (id || !name || !roll_num || !email || !phone || !gender || !dob || !address || !admission_date || !batch_id) {
+//     alert("Please fill in all fields and clear fields before adding data.");
+//     return;
+//   }
+
+//   let stduentdata = {
+//     name: name,
+//     roll_num: roll_num,
+//     email: email,
+//     phone: phone,
+//     gender: gender,
+//     dob: dob,
+//     address: address,
+//     admission_date: admission_date,
+//     remarks: remarks,
+//     batch_id: batch_id
+//   };
+
+//   $.ajax({
+//     url: "http://localhost:3000/api/addstudent",
+//     method: "POST",
+//     headers: {
+//         'Authorization': `Bearer ${localStorage.getItem('token')}`
+//       },
+//     data: JSON.stringify(stduentdata),
+//     contentType: "application/json",
+//     success: function (response) {
+//       console.log("Student Added Successfully");
+//       alert("Student Added Successfully");
+//       fetchstudent();
+//       clearstudentform();
+//     },
+//     error: function (xhr, status, error){
+//       console.log("Error: ", error);
+//       alert("Failed to add Student");
+//     }
+//   });
+// }
 
 
 
@@ -978,6 +1034,7 @@ function clearstudentform() {
   $('#student-address').val('');
   $('#admission-date').val('');
   $('#student-remarks').val('');
+  $('#student-preview').attr("src", "").hide();
   
 }
 
@@ -1046,6 +1103,11 @@ function showStudent(index) {
     $('#student-faculty-select').val(item.faculty_id).change();
     $('#department-student-select').val(item.dept_id).change();
     $('#student-batch-select').val(item.batch_id).change();
+    if (item.image) {
+    $('#student-preview').attr("src", `http://localhost/project/crud/Campus%20Manager/Public-JS-Modules/uploads/${item.image}`).show();
+    } else {
+      $('#student-preview').hide();
+    }
   }
 }
 
