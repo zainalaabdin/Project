@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function fetchNumber() {
+        return new Promise(resolve => {
+        setTimeout(() => {
+        resolve(42);
+        }, 1000);
+    });
+    }
+
+    async function useNumber() {
+    const number = await fetchNumber();
+    console.log("Number is:", number);
+    }
+    useNumber();
+
+
+    function fetchname(){
+        return new Promise(resolve =>{
+            setTimeout(() =>{
+                resolve("ZAINUL ABDIN");
+            }, 2000);
+        });
+    }
+    async function printname(){
+        let name = await fetchname();
+        console.log("Name :", name);
+    }
+    printname();
+
+
+    function temprature(){
+        return new Promise(resolve => {
+            setTimeout(() =>{
+                resolve("24c");
+            }, 3000);
+
+        });
+    }
+    async function display(){
+        const temp = await temprature();
+        console.log("Temprature:", temp);
+    }
+    display();
+    </script>
+</body>
+</html>

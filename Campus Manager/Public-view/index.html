@@ -233,12 +233,12 @@ let departmentData = [];
 
 function fetchDepartments(batch) {
 
-   utilAjax('departments', 'GET', (data)=>{
-      departmentData = data;
-      newDepartmentList();
-      filldropdown(data, "department-batch-select", "Department");
-      filldropdown(data, 'department-student-select', "Department");
-      batch(fetchstudent);
+utilAjax('departments', 'GET', (data)=>{
+    departmentData = data;
+    newDepartmentList();
+    filldropdown(data, "department-batch-select", "Department");
+    filldropdown(data, 'department-student-select', "Department");
+    batch(fetchstudent);
     });
   }
 
@@ -298,8 +298,6 @@ $(document).ready(function() {
   //Department Fetch Data End
 
 
-
-
 //add department code start
 //document.getElementById("addDepartment").addEventListener("click", addDepartment);
   $(document).ready(function(){
@@ -328,7 +326,7 @@ $(document).ready(function() {
     email: email,
     phone: phone
   };
-
+  
   $.ajax({
     url: "http://localhost:3000/api/addDepartment",
     method: "POST",
