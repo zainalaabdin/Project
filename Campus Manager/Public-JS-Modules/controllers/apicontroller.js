@@ -35,10 +35,10 @@ exports.addfac = async (req, res) => {
 
 exports.updatefaculty = async (req, res) => {
   try {
-    const { id, faculty, remarks } = req.body;
+    const { id, name, remarks } = req.body;
     await pool.query(
-      'UPDATE faculty SET faculty = $1, remarks = $2 WHERE id = $3',
-      [faculty, remarks, id]
+      'UPDATE faculty SET name = $1, remarks = $2 WHERE id = $3',
+      [name, remarks, id]
     );
     res.status(200).json({ message: "Faculty updated successfully" });
   } catch (error) {

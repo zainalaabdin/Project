@@ -31,208 +31,10 @@
 
 
 
-  </style>
+</style>
 </head>
 <body>
-<h1>UNIVERSITY</h1>
-<div class="logout-wrapper">
-  <button class="logout" onclick="logout()">Logout</button>
-</div>
-<div class="container">
-  <div class="left">
-    <h2>Faculty Details</h2>
-    <label>ID</label></br>
-    <input type="text" id="id" readonly />
-    <label>Faculty</label></br>
-    <input type="text" id="faculty" />
-    <label>Remarks</label></br>
-    <input type="text" id="remarks" />
 
-  <div class="buttons">
-    <button class="add" id="addfac">Add</button>
-    <button class="update" id="updatefaculty">Update</button>
-    <button class="delete" id="deletefaculty">Delete</button>
-    <button class="clear" id="clearfaculty">Clear</button>
-  </div>
-
-  </div>
-
-  <div class="scroll">
-  <div class="right">
-    <h2>Faculty List</h2>
-    <div id="clickfacultylist"></div>
-  </div>
-  </div>
-  </div>
-
-  <!-- DEPARTMENT SECTION -->
-  <div class="container">
-  <div class="left">
-
-    <h2>Department Details</h2>
-    <label for="faculty-select">Select Faculty</label><br />
-    <select id="faculty-select">
-      <option value="">-- Select Faculty --</option>
-    </select></br></br>
-
-    <label>ID</label><br />
-    <input type="text" id="dept-id" readonly />
-    <label>Name</label><br />
-    <input type="text" id="name" />
-    <label>Code</label><br />
-    <input type="text" id="code" />
-    <label>Email</label><br />
-    <input type="text" id="email" />
-    <label>Phone</label><br />
-    <input type="text" id="phone" />
-
-    <div class="buttons">
-      <button class="add" id="addDepartment">Add</button>
-      <button class="update" id="updateDepartment">Update</button>
-      <button class="delete" id="deleteDepartment">Delete</button>
-      <button class="clear" id="cleardept">Clear</button>
-    </div>
-  </div>
-
-  <div class="scroll">
-  <div class="right">
-    <h2>Department List</h2>
-    <div id="clickDepartmentList"></div>
-  </div>
-  </div>
-  </div>
-  
-
-
-  <!-- BATCH SECTION  -->
-  <div class="container">
-  <div class="left">
-
-    <h2>Batch Details</h2>
-  <div class="select-row">
-  <div class="select-group">
-    <label for="faculty-batch-select">Select Faculty</label><br />
-    <select id="faculty-batch-select">
-      <option value="">Select Faculty</option>
-    </select>
-  </div>
-
-  <div class="select-group">
-    <label for="department-select">Select Department</label><br />
-    <select id="department-batch-select">
-      <option value="">Select Department</option>
-    </select>
-  </div>
-</div>
-
-    <label>ID</label><br />
-    <input type="text" id="batch-id" readonly />
-    <label>Name</label><br />
-    <input type="text" id="batch-name" />
-    <label>Start Year</label><br />
-    <input type="text" id="start-year" />
-    <label>End Year</label><br />
-    <input type="text" id="end-year" />
-    <label>Remarks</label><br />
-    <input type="text" id="batch-remarks" />
-
-    <div class="buttons">
-      <button class="add" id="addBatch">Add</button>
-      <button class="update" id="updatebatch">Update</button>
-      <button class="delete" id="deletebatch">Delete</button>
-      <button class="clear" id="clearbatch">Clear</button>
-    </div>
-  </div>
-
-  <div class="scroll">
-  <div class="right">
-  <h2>Batch List</h2>
-  <div id="clickBatchList"></div>
-  </div>
-  </div>
-  </div>
-
-
-<!-- Student Start -->
-<div class="container">
-  <div class="left">
-    <h2>Student Details</h2>
-
-    <div class="select-row">
-  <div class="select-group">
-    <label for="student-faculty-select">Select Faculty</label><br />
-    <select id="student-faculty-select">
-      <option value="">Select Faculty</option>
-    </select>
-  </div>
-
-  <div class="select-group">
-    <label for="department-student-select">Select Department</label><br />
-    <select id="department-student-select">
-      <option value="">Select Department</option>
-    </select>
-  </div>
-
-  <div class="select-group">
-    <label for="student-batch-select">Select Batch</label><br />
-    <select id="student-batch-select">
-      <option value="">Select Batch</option>
-    </select>
-  </div>
-  </div>
-
-    <input type="file" id="student-image" accept="image/*" />
-    <img id="student-preview" src="" alt="Student Image" width="120" style="margin-top:10px; display:none;" />
-
-    <label>ID</label><br />
-    <input type="text" id="student-id" readonly />
-
-    <label>Name</label><br />
-    <input type="text" id="student-name" />
-
-    <label>Roll Number</label><br />
-    <input type="text" id="student-roll" />
-
-    <label>Email</label><br />
-    <input type="email" id="student-email" />
-
-    <label>Phone</label><br />
-    <input type="text" id="student-phone" />
-
-    <label>Gender</label><br />
-    <select id="student-gender">
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
-
-    <label>Date of Birth</label><br />
-    <input type="date" id="student-dob" />
-
-    <label>Address</label><br />
-    <textarea id="student-address" rows="2"></textarea>
-
-    <label>Admission Date</label><br />
-    <input type="date" id="admission-date" />
-
-    <label>Remarks</label><br />
-    <input type="text" id="student-remarks" />
-
-    <div class="buttons">
-      <button class="add" id="addstudent">Add</button>
-      <button class="update" id="updatestudent">Update</button>
-      <button class="delete" id="deletestudent">Delete</button>
-      <button class="clear" id="clearstudent">Clear</button>
-    </div>
-  </div>
-
-  <div class="scroll">
-    <div class="right">
-      <h2>Student List</h2>
-      <div id="clickStudentList"></div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Student End -->
@@ -247,56 +49,49 @@
   }
 });
 
-  const token = localStorage.getItem("token");
-  if(!token){
-      window.location.href = "login.html";
-  }else{
-    $.ajax({
-      url: 'http://localhost:3000/api/validateToken',
-      method: 'POST',
+function utilAjax(endpoint, method, callback, data = null){
+  $.ajax({
+      url: `http://localhost:3000/api/${endpoint}`,
+      method: method,
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-       success: function(data) {
-        
-      },
+      contentType: 'application/json',
+      data: data ? JSON.stringify(data) : null,
+      success: callback,
       error: function(xhr) {
         if(xhr.status === 401){
         alert('Session expied');
         window.location.href = "login.html";
         }
+
+        console.log("Status Code:", jqXHR.status);              
+        console.log("Status Text:", jqXHR.statusText);          
+        console.log("Response Text:", jqXHR.responseText);      
+        console.log("Text Status:", textStatus);              
+        console.log("Error Thrown:", errorThrown);  
       }
     });
+}
+
+  const token = localStorage.getItem("token");
+  if(!token){
+      window.location.href = "login.html";
+  }else{
+    utilAjax('validateToken', 'POST', (data)=>{})
   }
 
   let facultyData = [];
 
   function fetchFaculty(department) {
-    $.ajax({
-      url: 'http://localhost:3000/api/fetchFaculty',
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      success: function(data) {
-        facultyData = data;
-        newfacultylist();
-        filldropdown(data, 'faculty-select', "Faculty");
-        filldropdown(data, 'faculty-batch-select', "Faculty");
-        filldropdown(data, 'student-faculty-select', "Faculty");
-        department(fetchbatch);
-        
-        //end 
-        
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
     
-        console.log("Status Code:", jqXHR.status);              // e.g., 401
-        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
-        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
-        console.log("Text Status:", textStatus);                // e.g., "error"
-        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
-      }
+    utilAjax('fetchFaculty', 'GET', (data)=>{
+      facultyData = data;
+      newfacultylist();
+      filldropdown(data, 'faculty-select', "Faculty");
+      filldropdown(data, 'faculty-batch-select', "Faculty");
+      filldropdown(data, 'student-faculty-select', "Faculty");
+      department(fetchbatch);
     });
   }
 
@@ -357,26 +152,11 @@ function addfac() {
     remarks: remarks
   };
 
-  $.ajax({
-    url: "http://localhost:3000/api/addfac",
-    method: "POST",
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    data: JSON.stringify(facdata),
-    contentType: "application/json",
-    success: function (result) {
-      console.log("FACULTY ADDED SUCCESSFULLY");
-      fetchFaculty(fetchDepartments); 
-      clearfield();
-    },
-    error: function (xhr, status, error) {
-      if(xhr.status === 400)
-       
-      console.log("Error occurred:", error);
-      alert("Failed to add faculty. Try again.");
-    }
-  });
+utilAjax('addfac', 'POST', (result) => {
+    console.log("Faculty Added Successfully");
+    fetchFaculty(fetchDepartments);
+    clearfield();
+  }, facdata);
 }
 
 
@@ -386,6 +166,7 @@ function addfac() {
 $(document).ready(function(){
   $("#updatefaculty").on("click", updatefaculty);
 });
+
 function updatefaculty() {
   const id = $("#id").val().trim();
   const name = $("#faculty").val().trim();
@@ -402,24 +183,11 @@ function updatefaculty() {
     remarks: remarks
   };
 
-  $.ajax({
-    url: "http://localhost:3000/api/updatefaculty",  
-    method: "PUT",
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    data: JSON.stringify(updatedData),
-    contentType: "application/json",
-    success: function (result) {
-      alert("Faculty updated successfully.");
-      fetchFaculty(fetchDepartments);
-      clearfield();
-    },
-    error: function (xhr, status, error) {
-      console.log("Update error:", error);
-      alert("Failed to update faculty.");
-    }
-  });
+  utilAjax('updatefaculty', 'PUT', (result)=>{
+    alert("Faculty updated successfully.");
+    fetchFaculty(fetchDepartments);
+    clearfield();
+  }, updatedData);
 }
 
  //Clear
@@ -437,27 +205,20 @@ function updatefaculty() {
   
 
   //delete row funtion start
+    $(document).ready(function(){
+    $("#deletefaculty").on("click", deletefaculty);
+  });
 
   function deletefaculty() {
   const id = $("#id").val();
   if (confirm("Are you sure you want to delete this faculty?")) {
-    $.ajax({
-      url: `http://localhost:3000/api/deletefaculty/${id}`,
-      method: "DELETE",
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      success: function (result) {
-        alert("Faculty deleted successfully.");
+     utilAjax(`deletefaculty/${id}`, 'DELETE', (result)=>{
+      alert("Faculty deleted successfully.");
         fetchFaculty(fetchDepartments);
         clearfield();
-      },
-      error: function (xhr, status, error) {
-        console.error("Delete error:", error);
-        alert("Failed to delete faculty.");
-      }
-    });
-  }
+
+     });
+}
 }
 
   //delete row end 
@@ -471,29 +232,16 @@ function updatefaculty() {
 let departmentData = [];
 
 function fetchDepartments(batch) {
-  $.ajax({
-    url: 'http://localhost:3000/api/departments',
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    success: function(data) {
+
+   utilAjax('departments', 'GET', (data)=>{
       departmentData = data;
       newDepartmentList();
       filldropdown(data, "department-batch-select", "Department");
       filldropdown(data, 'department-student-select', "Department");
       batch(fetchstudent);
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-    
-        console.log("Status Code:", jqXHR.status);              // e.g., 401
-        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
-        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
-        console.log("Text Status:", textStatus);                // e.g., "error"
-        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
-      }
-  });
-}
+    });
+  }
+
 
 // Department list in Div
 function newDepartmentList() {
@@ -691,27 +439,15 @@ $(document).ready(function(){
 let batchData = [];
 
 function fetchbatch(student) {
-  $.ajax({
-    url: 'http://localhost:3000/api/fetchbatch',
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    success: function(data) {
-      batchData = data;
+
+
+  utilAjax('fetchbatch', 'GET', (data)=>{
+    batchData = data;
       Batchlist();
       filldropdown(data, "student-batch-select", "Batch");
       student();
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-    
-        console.log("Status Code:", jqXHR.status);              // e.g., 401
-        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
-        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
-        console.log("Text Status:", textStatus);                // e.g., "error"
-        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
-      }
   });
+  
 }
 
 // Batch list in Div
@@ -960,58 +696,6 @@ function addstudent() {
   });
 }
 
-// function addstudent() {
-//   let id = $("#student-id").val();
-//   let name = $("#student-name").val().trim();
-//   let roll_num = $("#student-roll").val().trim();
-//   let email = $("#student-email").val().trim();
-//   let phone = $("#student-phone").val().trim();
-//   let gender = $("#student-gender").val().trim();
-//   let dob = $("#student-dob").val().trim();
-//   let address = $("#student-address").val().trim();
-//   let admission_date = $("#admission-date").val().trim();
-//   let remarks = $("#student-remarks").val().trim();
-
-//   let batch_id = $("#student-batch-select").val();
-
-//   if (id || !name || !roll_num || !email || !phone || !gender || !dob || !address || !admission_date || !batch_id) {
-//     alert("Please fill in all fields and clear fields before adding data.");
-//     return;
-//   }
-
-//   let stduentdata = {
-//     name: name,
-//     roll_num: roll_num,
-//     email: email,
-//     phone: phone,
-//     gender: gender,
-//     dob: dob,
-//     address: address,
-//     admission_date: admission_date,
-//     remarks: remarks,
-//     batch_id: batch_id
-//   };
-
-//   $.ajax({
-//     url: "http://localhost:3000/api/addstudent",
-//     method: "POST",
-//     headers: {
-//         'Authorization': `Bearer ${localStorage.getItem('token')}`
-//       },
-//     data: JSON.stringify(stduentdata),
-//     contentType: "application/json",
-//     success: function (response) {
-//       console.log("Student Added Successfully");
-//       alert("Student Added Successfully");
-//       fetchstudent();
-//       clearstudentform();
-//     },
-//     error: function (xhr, status, error){
-//       console.log("Error: ", error);
-//       alert("Failed to add Student");
-//     }
-//   });
-// }
 
 
 
@@ -1040,26 +724,9 @@ function clearstudentform() {
 
 let studentData = [];
 function fetchstudent() {
-  $.ajax({
-    url: "http://localhost:3000/api/fetchstudent", 
-    method: "GET",
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    success: function (data) {
-      studentData = data;
+  utilAjax('fetchstudent', 'GET', (data)=>{
+    studentData = data;
       StudentList();
-      
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-    
-        console.log("Status Code:", jqXHR.status);              // e.g., 401
-        console.log("Status Text:", jqXHR.statusText);          // e.g., "Unauthorized"
-        console.log("Response Text:", jqXHR.responseText);      // Raw response (HTML/JSON)
-        console.log("Text Status:", textStatus);                // e.g., "error"
-        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
-      }
   });
 }
 

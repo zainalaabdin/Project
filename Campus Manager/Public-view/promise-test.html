@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>UNIVERSITY</h1>
+<div class="container">
+  <div class="left">
+    <h2>Faculty Details</h2>
+    <label>ID</label></br>
+    <input type="text" id="id" readonly />
+    <label>Faculty</label></br>
+    <input type="text" id="faculty" />
+    <label>Remarks</label></br>
+    <input type="text" id="remarks" />
+
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Faculty List</h2>
+    <div id="clickfacultylist"></div>
+  </div>
+  </div>
+  </div>
+
+  <!-- DEPARTMENT SECTION -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Department Details</h2>
+
+    <label>ID</label><br />
+    <input type="text" id="dept-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="name" />
+    <label>Code</label><br />
+    <input type="text" id="code" />
+    <label>Email</label><br />
+    <input type="text" id="email" />
+    <label>Phone</label><br />
+    <input type="text" id="phone" />
+
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Department List</h2>
+    <div id="clickDepartmentList"></div>
+  </div>
+  </div>
+  </div>
+  
+
+
+  <!-- BATCH SECTION  -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Batch Details</h2>
+  <div class="select-row">
+</div>
+
+    <label>ID</label><br />
+    <input type="text" id="batch-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="batch-name" />
+    <label>Start Year</label><br />
+    <input type="text" id="start-year" />
+    <label>End Year</label><br />
+    <input type="text" id="end-year" />
+    <label>Remarks</label><br />
+    <input type="text" id="batch-remarks" />
+
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+  <h2>Batch List</h2>
+  <div id="clickBatchList"></div>
+  </div>
+  </div>
+  </div>
+
+
+<!-- Student Start -->
+<div class="container">
+  <div class="left">
+    <h2>Student Details</h2>
+
+    <label>ID</label><br />
+    <input type="text" id="student-id" readonly />
+
+    <label>Name</label><br />
+    <input type="text" id="student-name" />
+
+    <label>Roll Number</label><br />
+    <input type="text" id="student-roll" />
+
+    <label>Email</label><br />
+    <input type="email" id="student-email" />
+
+    <label>Phone</label><br />
+    <input type="text" id="student-phone" />
+
+    <label>Gender</label><br />
+    <select id="student-gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label>Date of Birth</label><br />
+    <input type="date" id="student-dob" />
+
+    <label>Address</label><br />
+    <textarea id="student-address" rows="2"></textarea>
+
+    <label>Admission Date</label><br />
+    <input type="date" id="admission-date" />
+
+    <label>Remarks</label><br />
+    <input type="text" id="student-remarks" />
+
+  </div>
+
+  <div class="scroll">
+    <div class="right">
+      <h2>Student List</h2>
+      <div id="clickStudentList"></div>
+    </div>
+  </div>
+</div>
+    <script>
+
+        function utilAjax(endpoint, method, callback) {
+            return new Promise((resolve, reject) => {
+
+                $.ajax({
+                    url: `http://localhost:3000/api/${endpoint}`,
+                    method: method,
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    success: function (data) {
+                        resolve(callback(data));
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401) {
+                            alert('Session expied');
+                            window.location.href = "login.html";
+                        }
+
+                        reject(`Status: ${xhr.status} Response Text: ${xhr.responseText}`);
+                        console.log("Status Code:", xhr.status);              // e.g., 401
+                        console.log("Status Text:", xhr.statusText);          // e.g., "Unauthorized"
+                        console.log("Response Text:", xhr.responseText);      // Raw response (HTML/JSON)
+                        console.log("Text Status:", textStatus);                // e.g., "error"
+                        console.log("Error Thrown:", errorThrown);              // e.g., "Unauthorized"
+                    }
+                });
+
+            });
+        }
+
+   
+
+utilAjax('fetchFaculty', 'GET', data => data)
+.then(facultyData => {
+    if (facultyData.length > 0) {
+        $('#id').val(facultyData[0].id);
+        $('#faculty').val(facultyData[0].name);
+        $('#remarks').val(facultyData[0].remarks);
+        
+    }
+    
+    return utilAjax('departments', 'GET', data => data);
+})
+.then(deptData => {
+    if (deptData.length > 0) {
+        $('#dept-id').val(deptData[0].id);
+        $('#name').val(deptData[0].name);
+        $('#code').val(deptData[0].code);
+        $('#email').val(deptData[0].email);
+        $('#phone').val(deptData[0].phone);
+    }
+    return utilAjax('fetchbatch', 'GET', data => data);
+})
+.then(batchData => {
+    if (batchData.length > 0) {
+        $('#batch-id').val(batchData[0].id);
+        $('#batch-name').val(batchData[0].name);
+        $('#start-year').val(batchData[0].start_year);
+        $('#end-year').val(batchData[0].end_year);
+        $('#batch-remarks').val(batchData[0].remarks);
+    }
+    return utilAjax('fetchstudent', 'GET', data => data);
+})
+.then(studentData => {
+    if (studentData.length > 0) {
+    $('#student-id').val(studentData[0].id);
+    $('#student-name').val(studentData[0].name);
+    $('#student-roll').val(studentData[0].roll);
+    $('#student-email').val(studentData[0].email);
+    $('#student-phone').val(studentData[0].phone);
+    $('#student-gender').val(studentData[0].gender);
+    $('#student-dob').val(studentData[0].dob);
+    $('#student-address').val(studentData[0].address);
+    $('#admission-date').val(studentData[0].admission_date);
+    $('#student-remarks').val(studentData[0].remarks);
+}
+
+})
+.catch(error => {
+    console.error("Error:", error);
+});
+
+    </script>
+</body>
+
+</html>

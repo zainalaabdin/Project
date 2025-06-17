@@ -35,23 +35,23 @@ function authenticateJWT(req, res, next) {
 router.post('/login', controller.login);
 router.post('/validateToken', controller.validateToken);
 
-router.get('/fetchFaculty', authenticateJWT, controller.fetchFaculty);
+router.get('/fetchFaculty', controller.fetchFaculty);
 router.post('/addfac', authenticateJWT, controller.addfac);
 router.put('/updatefaculty', authenticateJWT, controller.updatefaculty);
 router.delete('/deletefaculty/:id', authenticateJWT, controller.deletefaculty);
 
-router.get('/departments', authenticateJWT, controller.departments);
+router.get('/departments', controller.departments);
 router.post('/addDepartment', authenticateJWT, controller.addDepartment);
 router.put('/updateDepartment', authenticateJWT, controller.updateDepartment);
 router.delete('/deleteDepartment/:id', authenticateJWT, controller.deleteDepartment);
 
 router.post('/addBatch', authenticateJWT, controller.addBatch);
-router.get('/fetchbatch', authenticateJWT, controller.fetchbatch);
+router.get('/fetchbatch', controller.fetchbatch);
 router.delete("/deletebatch/:id", authenticateJWT, controller.deletebatch);
 router.put('/updateBatch', authenticateJWT, controller.updateBatch);
 
 router.post('/addstudent', upload.single("image"), authenticateJWT, controller.addstudent);
-router.get('/fetchstudent', authenticateJWT, controller.fetchstudent);
+router.get('/fetchstudent', controller.fetchstudent);
 router.delete("/deletestudent/:id", authenticateJWT, controller.deletestudent);
 router.put('/updatestudent', authenticateJWT, controller.updatestudent);
 
