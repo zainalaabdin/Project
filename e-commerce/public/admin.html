@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      background-color: #14121b;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-container {
+      max-width: 500px;
+      margin: 80px auto;
+      padding: 80px;
+      background-color: #1e1c27;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 153, 0, 0.2);
+    }
+
+    .login-container h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ff9900;
+    }
+
+    .btn-orange {
+      background-color: #ff9900;
+      color: #14121b;
+      border: none;
+    }
+
+    .btn-orange:hover {
+      background-color: #e68a00;
+    }
+
+    label {
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h3>Admin Login</h3>
+    <form id="adminLoginForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="name" placeholder="admin@example.com" required />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" required />
+      </div>
+
+      <input type="hidden" id="role" name="role" value="admin" />
+
+      <button type="submit" class="btn btn-orange w-100">Login</button>
+    </form>
+  </div>
+
+
+ 
+  
+
+  <footer class="text-light pt-5 pb-4" style="background-color: #14121b;">
+  <div class="container text-md-left">
+
+
+  <!-- Bottom -->
+  <div class="text-center pt-3 border-top mt-4" style="border-color: #333 !important;">
+    <p class="card-title" style="color: #ff9900;">
+      © 2025 Solace Attire. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+
+<script>
+    $(document).ready(function () {
+    $('#adminLoginForm').on('submit', function (e) {
+    e.preventDefault();
+
+    let email = $('#name').val().trim();
+    let password = $('#password').val().trim(); 
+    let role = $('#role').val(); 
+
+    if (!email || !password) {
+      alert("Please enter both Email & Password");
+      return;
+    }
+
+    const logindata = {
+      email: email,
+      password: password,
+      role: role
+    };
+
+    $.ajax({
+      url: "http://localhost:3000/api/adminlogin",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(logindata),
+      success: function (result) {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("name", result.name);
+        window.location.href = "dashboard.html";
+      },
+      error: function (xhr, status, error) {
+        alert("Login failed. Please check your credentials.");
+      }
+    });
+    });
+
+
+  const token = localStorage.getItem("token");
+  if (token) {
+    $.ajax({
+      url: 'http://localhost:3000/api/validateToken',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: function () {
+        window.location.href = "dashboard.html";
+      }
+    });
+    }
+    });
+
+
+  </script>
+</body>
+</html>

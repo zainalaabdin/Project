@@ -5,13 +5,37 @@ const JWT_SECRET = "main";
 
 exports.login = async (req, res) => {
   try {
-    console.log(dropdownmenu());
     const { email, password } = req.body;
 
     const query = 'SELECT * FROM users WHERE email = $1 AND password = $2';
     const result = await pool.query(query, [email, password]);
 
-    if (result.rows && result.rows.length > 0) {
+    if (result.rows && result.rows.length > 0 ) {
+      const user = result.rows[0];
+      const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+
+      res.status(200).json({ 
+        token: token, 
+        name: user.name,
+        message: "Login Successfully" 
+      });
+    } else {
+      res.status(401).json({ message: "Email or Password incorrect" });
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.adminlogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const query = 'SELECT * FROM users WHERE email = $1 AND password = $2';
+    const result = await pool.query(query, [email, password]);
+
+    if (result.rows && result.rows.length > 0 && result.rows[0].role === 0) {
       const user = result.rows[0];
       const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
 

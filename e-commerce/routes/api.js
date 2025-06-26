@@ -23,6 +23,7 @@ function authenticateJWT(req, res, next) {
 }
 
 router.post('/login', controller.login);
+router.post('/adminlogin', controller.adminlogin);
 router.post('/validateToken', controller.validateToken);
 
 router.post('/register', controller.register);
