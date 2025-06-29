@@ -132,7 +132,47 @@ async function populateChildern(parentId){
 }
 
 
+//Add Product
+
+exports.addProduct = async (req, res) => {
+  console.log("Incoming product data:", req.body);
+  try {
+    const {
+      name, description, price, discount_price, image_url, category_id, stock, rating, reviews_count} = req.body;
+    if (!name || !description || !price || !image_url || !category_id || !stock) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const result = await pool.query(
+      `
+      INSERT INTO products (name, description, price, discount_price, image_url, category_id, stock, rating, reviews_count, created_at,
+      updated_at)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW(), NOW())
+      RETURNING *;
+      `,
+      [name, description, price, discount_price || null, image_url, category_id, stock, rating || 0, reviews_count || 0]
+    );
+
+    res.status(201).json({
+      message: 'Product added successfully',
+      product: result.rows[0]
+    });
+
+  } catch (err) {
+    console.error('Error adding product:', err);
+    res.status(500).json({ message: 'Server error while adding product' });
+  }
+};
 
 
+//Fetch Product 
+exports.getProducts = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM products ORDER BY created_at DESC');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Failed to fetch products" });
+  }
+};
 
 

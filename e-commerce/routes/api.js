@@ -29,6 +29,8 @@ router.post('/validateToken', controller.validateToken);
 router.post('/register', controller.register);
 router.get('/getMenu', controller.getMenu);
 router.get('/fetchmenu', authenticateJWT, controller.fetchmenu);
+router.post('/addProduct', authenticateJWT, controller.addProduct);
+router.get('/getProducts', controller.getProducts);
 
 
 

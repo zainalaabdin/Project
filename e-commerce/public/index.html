@@ -377,79 +377,9 @@ body {
       <strong class="text-muted">Explore our latest fashion for men and women</strong>
     </div>
 
-    <div class="row g-4">
+<div class="row g-4" id="product-list">
 
-      <div class="col-md-3">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="position-relative">
-            <span class="badge bg-danger position-absolute top-0 start-0 m-2">Sale</span>
-            <div class="image-wrapper position-relative">
-              <img src="img/product/hoodie.jpg" class="card-img-top" alt="Hoodie">
-              <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Classic Orange Hoodie</h6>
-            <p class="text-danger fw-bold mb-1">PKR 2000 <del class="text-muted fs-sm">2500</del></p>
-            <div class="text-warning small">
-              ★★★★★ <span class="text-muted">(32)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="image-wrapper position-relative">
-            <img src="img/product/tshirt.jpg" class="card-img-top" alt="T-shirt">
-            <button class="add-to-cart-btn">Add to Cart</button>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Minimal Printed White T-shirt</h6>
-            <p class="text-danger fw-bold mb-1">PKR 1500</p>
-            <div class="text-warning small">
-              ★★★★☆ <span class="text-muted">(18)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="image-wrapper position-relative">
-            <img src="img/product/jacket.jpg" class="card-img-top" alt="Jacket">
-            <button class="add-to-cart-btn">Add to Cart</button>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Zipper Jacket</h6>
-            <p class="text-danger fw-bold mb-1">PKR 6000</p>
-            <div class="text-warning small">
-              ★★★★☆ <span class="text-muted">(21)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="position-relative">
-            <span class="badge bg-success position-absolute top-0 start-0 m-2">New</span>
-            <div class="image-wrapper position-relative">
-              <img src="img/product/sweatshirt.jpg" class="card-img-top" alt="Sweatshirt">
-              <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Cozy Fit Black Sweatshirt</h6>
-            <p class="text-danger fw-bold mb-1">PKR 1800</p>
-            <div class="text-warning small">
-              ★★★★☆ <span class="text-muted">(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+</div>
   </div>
 </section>
 
@@ -508,6 +438,10 @@ body {
     </p>
   </div>
 </footer>
-
+<Script>
+  $(document).ready(function () {
+  fetchProducts();
+});
+</script>
 </body>
 </html>

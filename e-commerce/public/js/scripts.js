@@ -132,3 +132,55 @@ function populateChidern(children, menuHtml){
     return menuHtml
 
 }
+
+
+
+//FETCH PRODUCT
+function fetchProducts() {
+  $.ajax({
+    url: "http://localhost:3000/api/getProducts",
+    method: "GET",
+    success: function (products) {
+      let html = '';
+
+      products.forEach(product => {
+        html += `
+        <div class="col-md-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="position-relative">
+              ${product.discount_price ? `<span class="badge bg-danger position-absolute top-0 start-0 m-2">Sale</span>` : ''}
+              <div class="image-wrapper position-relative">
+                <img src="${product.image_url}" class="card-img-top" alt="${product.name}">
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">${product.name}</h6>
+              <p class="text-danger fw-bold mb-1">PKR ${product.price}
+                ${product.discount_price ? `<del class="text-muted fs-sm">${product.discount_price}</del>` : ''}
+              </p>
+              <div class="text-warning small">
+                ${renderStars(product.rating)} <span class="text-muted">(${product.reviews_count})</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      });
+
+      $('#product-list').html(html);
+    },
+    error: function (xhr, status, error) {
+      console.error("Failed to load products", error);
+    }
+  });
+}
+
+function renderStars(rating) {
+  let stars = '';
+  let r = Math.round(rating);
+  for (let i = 0; i < 5; i++) {
+    stars += i < r ? '★' : '☆';
+  }
+  return stars;
+}
