@@ -114,16 +114,12 @@ $(document).ready(function () {
 });
 
 function populateChidern(children, menuHtml){
-
-  
   for (let j = 0; j < children.length; j++) {
-
     const child = children[j];
 
       if (child.children && child.children.length > 0){
         menuHtml = populateChidern(child.children);
       }
-
 
     const childSlug = child.slug || "#";
     menuHtml += `<li><a class="dropdown-item" href="${childSlug}">${child.title}</a></li>`;

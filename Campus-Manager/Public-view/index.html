@@ -34,6 +34,206 @@
 </style>
 </head>
 <body>
+<h1>UNIVERSITY</h1>
+<div class="logout-wrapper">
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+<div class="container">
+  <div class="left">
+    <h2>Faculty Details</h2>
+    <label>ID</label></br>
+    <input type="text" id="id" readonly />
+    <label>Faculty</label></br>
+    <input type="text" id="faculty" />
+    <label>Remarks</label></br>
+    <input type="text" id="remarks" />
+
+  <div class="buttons">
+    <button class="add" onclick="addfac()">Add</button>
+    <button class="update" onclick="updatefaculty()">Update</button>
+    <button class="delete" onclick="deletefaculty()">Delete</button>
+    <button class="clear" id="clearfaculty">Clear</button>
+  </div>
+
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Faculty List</h2>
+    <div id="clickfacultylist"></div>
+  </div>
+  </div>
+  </div>
+
+  <!-- DEPARTMENT SECTION -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Department Details</h2>
+    <label for="faculty-select">Select Faculty</label><br />
+    <select id="faculty-select">
+      <option value="">-- Select Faculty --</option>
+    </select></br></br>
+
+    <label>ID</label><br />
+    <input type="text" id="dept-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="name" />
+    <label>Code</label><br />
+    <input type="text" id="code" />
+    <label>Email</label><br />
+    <input type="text" id="email" />
+    <label>Phone</label><br />
+    <input type="text" id="phone" />
+
+    <div class="buttons">
+      <button class="add" onclick="addDepartment()">Add</button>
+      <button class="update" onclick="updateDepartment()">Update</button>
+      <button class="delete" onclick="deleteDepartment()">Delete</button>
+      <button class="clear" id="cleardept">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+    <h2>Department List</h2>
+    <div id="clickDepartmentList"></div>
+  </div>
+  </div>
+  </div>
+  
+
+
+
+
+  <!-- BATCH SECTION  -->
+  <div class="container">
+  <div class="left">
+
+    <h2>Batch Details</h2>
+  <div class="select-row">
+  <div class="select-group">
+    <label for="faculty-batch-select">Select Faculty</label><br />
+    <select id="faculty-batch-select">
+      <option value="">Select Faculty</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="department-select">Select Department</label><br />
+    <select id="department-batch-select">
+      <option value="">Select Department</option>
+    </select>
+  </div>
+</div>
+
+    <label>ID</label><br />
+    <input type="text" id="batch-id" readonly />
+    <label>Name</label><br />
+    <input type="text" id="batch-name" />
+    <label>Start Year</label><br />
+    <input type="text" id="start-year" />
+    <label>End Year</label><br />
+    <input type="text" id="end-year" />
+    <label>Remarks</label><br />
+    <input type="text" id="batch-remarks" />
+
+    <div class="buttons">
+      <button class="add" onclick="addBatch()">Add</button>
+      <button class="update" onclick="updatebatch()">Update</button>
+      <button class="delete" onclick="deletebatch()">Delete</button>
+      <button class="clear" id="clearbatch">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+  <div class="right">
+  <h2>Batch List</h2>
+  <div id="clickBatchList"></div>
+  </div>
+  </div>
+  </div>
+
+
+<!-- Student Start -->
+<div class="container">
+  <div class="left">
+    <h2>Student Details</h2>
+
+    <div class="select-row">
+  <div class="select-group">
+    <label for="student-faculty-select">Select Faculty</label><br />
+    <select id="student-faculty-select">
+      <option value="">Select Faculty</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="department-student-select">Select Department</label><br />
+    <select id="department-student-select">
+      <option value="">Select Department</option>
+    </select>
+  </div>
+
+  <div class="select-group">
+    <label for="student-batch-select">Select Batch</label><br />
+    <select id="student-batch-select">
+      <option value="">Select Batch</option>
+    </select>
+  </div>
+  </div>
+
+
+    <label>ID</label><br />
+    <input type="text" id="student-id" readonly />
+
+    <label>Name</label><br />
+    <input type="text" id="student-name" />
+
+    <label>Roll Number</label><br />
+    <input type="text" id="student-roll" />
+
+    <label>Email</label><br />
+    <input type="email" id="student-email" />
+
+    <label>Phone</label><br />
+    <input type="text" id="student-phone" />
+
+    <label>Gender</label><br />
+    <select id="student-gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label>Date of Birth</label><br />
+    <input type="date" id="student-dob" />
+
+    <label>Address</label><br />
+    <textarea id="student-address" rows="2"></textarea>
+
+    <label>Admission Date</label><br />
+    <input type="date" id="admission-date" />
+
+    <label>Remarks</label><br />
+    <input type="text" id="student-remarks" />
+
+    <div class="buttons">
+      <button class="add" onclick="addstudent()">Add</button>
+      <button class="update" onclick="updatestudent()">Update</button>
+      <button class="delete" onclick="deletestudent()">Delete</button>
+      <button class="clear" id="clearstudent">Clear</button>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <div class="right">
+      <h2>Student List</h2>
+      <div id="clickStudentList"></div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -59,18 +259,18 @@ function utilAjax(endpoint, method, callback, data = null){
       contentType: 'application/json',
       data: data ? JSON.stringify(data) : null,
       success: callback,
-      error: function(xhr) {
-        if(xhr.status === 401){
-        alert('Session expied');
+      error: function(xhr, textStatus, errorThrown) {
+      if (xhr.status === 401) {
+        alert('Session expired');
         window.location.href = "login.html";
-        }
-
-        console.log("Status Code:", jqXHR.status);              
-        console.log("Status Text:", jqXHR.statusText);          
-        console.log("Response Text:", jqXHR.responseText);      
-        console.log("Text Status:", textStatus);              
-        console.log("Error Thrown:", errorThrown);  
       }
+
+      console.log("Status Code:", xhr.status);              
+      console.log("Status Text:", xhr.statusText);          
+      console.log("Response Text:", xhr.responseText);      
+      console.log("Text Status:", textStatus);              
+      console.log("Error Thrown:", errorThrown);  
+}
     });
 }
 
@@ -768,11 +968,11 @@ function showStudent(index) {
     $('#student-faculty-select').val(item.faculty_id).change();
     $('#department-student-select').val(item.dept_id).change();
     $('#student-batch-select').val(item.batch_id).change();
-    if (item.image) {
-    $('#student-preview').attr("src", `http://localhost/project/crud/Campus%20Manager/Public-JS-Modules/uploads/${item.image}`).show();
-    } else {
-      $('#student-preview').hide();
-    }
+    // if (item.image) {
+    // $('#student-preview').attr("src", `http://localhost/PROJECTS/JavaScript-Projects/crud/Campus-Manager/Public-JS-Modules/uploads/${item.image}`).show();
+    // } else {
+    //   $('#student-preview').hide();
+    // }
   }
 }
 
@@ -875,6 +1075,9 @@ localStorage.removeItem("isLoggedIn");
 localStorage.removeItem("token");
 window.location.href = "login.html";
 }
+
+
+
 
 </script>
 
