@@ -85,7 +85,7 @@
 
 <script>
     $(document).ready(function () {
-    $('#adminLoginForm').on('submit', function (e) {
+  $('#adminLoginForm').on('submit', function (e) {
     e.preventDefault();
 
     let email = $('#name').val().trim();
@@ -99,8 +99,7 @@
 
     const logindata = {
       email: email,
-      password: password,
-      role: role
+      password: password
     };
 
     $.ajax({
@@ -109,33 +108,52 @@
       contentType: "application/json",
       data: JSON.stringify(logindata),
       success: function (result) {
+        
         localStorage.setItem("token", result.token);
-        localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("name", result.name);
-        window.location.href = "dashboard.html";
+        localStorage.setItem("isLoggedIn", true);
+
+       
+        const payload = JSON.parse(atob(result.token.split('.')[1]));
+
+        if (payload.role === 0) {
+          window.location.href = "dashboard.html"; 
+        } else {
+          alert("Access denied. You're not an admin.");
+          localStorage.clear();
+          window.location.href = "login.html";
+        }
       },
       error: function (xhr, status, error) {
         alert("Login failed. Please check your credentials.");
       }
     });
-    });
+  });
 
 
   const token = localStorage.getItem("token");
   if (token) {
-    $.ajax({
-      url: 'http://localhost:3000/api/validateToken',
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      success: function () {
-        window.location.href = "dashboard.html";
-      }
-    });
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    
+    if (payload.role !== 0) {
+      alert("Access denied. You're not an admin.");
+      localStorage.clear();
+      window.location.href = "login.html";
+    } else {
+      
+      $.ajax({
+        url: 'http://localhost:3000/api/validateToken',
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        success: function () {
+          window.location.href = "dashboard.html";
+        }
+      });
     }
-    });
-
+  }
+});
 
   </script>
 </body>

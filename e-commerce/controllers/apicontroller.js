@@ -37,7 +37,7 @@ exports.adminlogin = async (req, res) => {
 
     if (result.rows && result.rows.length > 0 && result.rows[0].role === 0) {
       const user = result.rows[0];
-      const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
 
       res.status(200).json({ 
         token: token, 

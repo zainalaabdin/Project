@@ -113,21 +113,28 @@ $(document).ready(function () {
   getMenu();
 });
 
-function populateChidern(children, menuHtml){
+function populateChidern(children, menuHtml = '') {
   for (let j = 0; j < children.length; j++) {
     const child = children[j];
-
-      if (child.children && child.children.length > 0){
-        menuHtml = populateChidern(child.children);
-      }
-
     const childSlug = child.slug || "#";
-    menuHtml += `<li><a class="dropdown-item" href="${childSlug}">${child.title}</a></li>`;
+
+    if (child.children && child.children.length > 0) {
+      menuHtml += `
+        <li class="dropdown-submenu">
+          <a class="dropdown-item dropdown-toggle" href="${childSlug}">${child.title}</a>
+          <ul class="dropdown-menu">
+            ${populateChidern(child.children)}
+          </ul>
+        </li>
+      `;
+    } else {
+      menuHtml += `<li><a class="dropdown-item" href="${childSlug}">${child.title}</a></li>`;
+    }
   }
 
-    return menuHtml
-
+  return menuHtml;
 }
+
 
 
 
